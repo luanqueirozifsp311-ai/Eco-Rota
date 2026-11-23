@@ -1,0 +1,15 @@
+meta {
+  name: Buscar evento por id
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/eventos/{{eventoId}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

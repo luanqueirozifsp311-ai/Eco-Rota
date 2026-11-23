@@ -1,0 +1,24 @@
+meta {
+  name: Criar sem token (401)
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/perguntas
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "pergunta": "Posso descartar óleo de cozinha nos ecopontos?",
+    "resposta": "Sim, em garrafa PET fechada, no Ecoponto Tinga.",
+    "ordem": 4
+  }
+}
+
+assert {
+  res.status: eq 401
+  res.body.erro.codigo: eq NAO_AUTENTICADO
+}

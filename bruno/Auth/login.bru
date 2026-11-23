@@ -1,0 +1,32 @@
+meta {
+  name: Login (salva o token)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/auth/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "usuario": "admin",
+    "senha": "admin123"
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  if (res.status === 200) {
+    bru.setVar("token", res.body.token);
+  }
+}
+
+docs {
+  Execute esta requisição primeiro: o token fica salvo e é usado nas rotas protegidas.
+}

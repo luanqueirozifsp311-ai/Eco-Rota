@@ -1,0 +1,27 @@
+meta {
+  name: Atualizar pergunta (PUT)
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/perguntas/{{perguntaId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "pergunta": "Posso descartar óleo de cozinha nos ecopontos?",
+    "resposta": "Sim, em garrafa PET bem fechada.",
+    "ordem": 5
+  }
+}
+
+assert {
+  res.status: eq 200
+}

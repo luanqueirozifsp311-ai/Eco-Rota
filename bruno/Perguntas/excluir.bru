@@ -1,0 +1,19 @@
+meta {
+  name: Excluir pergunta
+  type: http
+  seq: 10
+}
+
+delete {
+  url: {{baseUrl}}/perguntas/{{perguntaId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+assert {
+  res.status: eq 204
+}

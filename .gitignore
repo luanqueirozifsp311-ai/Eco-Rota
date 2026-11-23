@@ -1,0 +1,21 @@
+# Dependências e build
+node_modules/
+dist/
+api-dist/
+.vercel/
+
+# Segredos (nunca versionar)
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Client gerado pelo Prisma (criado no build da Vercel)
+backend/generated/
+
+# Diversos
+*.log
+.DS_Store
+Thumbs.db

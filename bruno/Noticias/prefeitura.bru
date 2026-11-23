@@ -1,0 +1,19 @@
+meta {
+  name: Notícias da Prefeitura
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{baseUrl}}/noticias/prefeitura
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  Busca as 3 últimas notícias do site da Prefeitura de Caraguatatuba (cache de 10 min).
+}

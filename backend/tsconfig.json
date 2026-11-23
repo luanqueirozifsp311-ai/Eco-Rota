@@ -1,0 +1,12 @@
+{
+  // Usado apenas pelo Prisma (para gerar o client no formato certo) e pelo tsx.
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2023",
+    "allowJs": true,
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  }
+}

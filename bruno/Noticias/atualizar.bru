@@ -1,0 +1,29 @@
+meta {
+  name: Atualizar notícia (PUT)
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/noticias/{{noticiaId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "categoria": "Utilidade",
+    "titulo": "Coleta seletiva em todos os bairros",
+    "texto": "A coleta seletiva foi ampliada para todos os bairros da cidade.",
+    "foto": "/img/card1.png",
+    "link": "https://www.caraguatatuba.sp.gov.br"
+  }
+}
+
+assert {
+  res.status: eq 200
+}

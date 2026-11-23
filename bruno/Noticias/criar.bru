@@ -1,0 +1,35 @@
+meta {
+  name: Criar notícia
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/noticias
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "categoria": "Utilidade",
+    "titulo": "Coleta seletiva chega a novos bairros",
+    "texto": "A coleta seletiva foi ampliada para mais bairros da cidade.",
+    "foto": "/img/card1.png",
+    "link": "https://www.caraguatatuba.sp.gov.br"
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+script:post-response {
+  if (res.status === 201) {
+    bru.setVar("noticiaId", res.body.id);
+  }
+}

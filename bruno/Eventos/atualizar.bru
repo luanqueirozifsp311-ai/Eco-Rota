@@ -1,0 +1,28 @@
+meta {
+  name: Atualizar evento (PUT)
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/eventos/{{eventoId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "titulo": "Plantio de Mudas (atualizado)",
+    "data": "2026-12-06",
+    "local": "Parque Tinga",
+    "descricao": "Plantio de mudas nativas com a comunidade."
+  }
+}
+
+assert {
+  res.status: eq 200
+}

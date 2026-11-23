@@ -1,0 +1,30 @@
+meta {
+  name: Atualizar ecoponto (PUT)
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/ecopontos/{{ecopontoId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "nome": "Ecoponto Centro II",
+    "endereco": "Av. Brasil, 100 - Centro, Caraguatatuba",
+    "horario": "Seg à Sex, das 09:00 às 16:00",
+    "descartes": "Podas, Entulhos, Vidros",
+    "latitude": -23.6203,
+    "longitude": -45.4131
+  }
+}
+
+assert {
+  res.status: eq 200
+}

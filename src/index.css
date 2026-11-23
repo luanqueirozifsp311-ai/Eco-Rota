@@ -1,0 +1,7 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+body{@apply font-sans text-slate-700 bg-white}
+.card{@apply bg-white rounded-xl border border-cyan-100 shadow-sm}
+.btn{@apply inline-flex items-center justify-center rounded-full bg-eco text-white font-semibold px-6 py-2 hover:opacity-90 transition}
+.btn-o{@apply inline-flex items-center justify-center rounded-lg border border-eco text-eco font-semibold px-4 py-2 text-sm hover:bg-ice transition}
+.inp{@apply w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-eco}
+.h-bebas{@apply font-bebas tracking-wide text-eco}

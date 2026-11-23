@@ -1,0 +1,15 @@
+meta {
+  name: Listar perguntas
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/perguntas
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

@@ -1,0 +1,36 @@
+meta {
+  name: Criar ecoponto
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/ecopontos
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "nome": "Ecoponto Centro",
+    "endereco": "Av. Brasil, 100 - Centro, Caraguatatuba",
+    "horario": "Seg à Sáb, das 08:30 às 17:00",
+    "descartes": "Podas, Entulhos, Vidros",
+    "latitude": -23.6203,
+    "longitude": -45.4131
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+script:post-response {
+  if (res.status === 201) {
+    bru.setVar("ecopontoId", res.body.id);
+  }
+}

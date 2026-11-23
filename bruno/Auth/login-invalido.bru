@@ -1,0 +1,23 @@
+meta {
+  name: Login inválido (401)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/auth/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "usuario": "admin",
+    "senha": "errada"
+  }
+}
+
+assert {
+  res.status: eq 401
+  res.body.erro.codigo: eq CREDENCIAIS_INVALIDAS
+}

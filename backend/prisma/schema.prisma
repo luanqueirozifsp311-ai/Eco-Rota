@@ -1,0 +1,81 @@
+// Este arquivo descreve as TABELAS do banco. O Prisma lê isto e cria/atualiza o MySQL.
+
+// Onde e como o Prisma gera o "client" (o código que usamos para consultar o banco).
+// A pasta "generated" é criada por "prisma generate".
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+// Tipo de banco. O endereço de conexão está em prisma.config.ts
+datasource db {
+  provider = "mysql"
+}
+
+// Tipo de usuário (por enquanto só existe administrador)
+enum Papel {
+  ADMIN
+}
+
+// Tabela "usuarios": quem pode entrar no painel (Eventos > Área do Administrador).
+// Guardamos só o hash da senha, nunca a senha em si.
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  usuario   String   @unique @db.VarChar(50)
+  senhaHash String   @db.VarChar(255)
+  papel     Papel    @default(ADMIN)
+  criadoEm  DateTime @default(now())
+
+  @@map("usuarios")
+}
+
+// Tabela "eventos": página Eventos
+model Evento {
+  id        Int      @id @default(autoincrement())
+  titulo    String   @db.VarChar(150)
+  data      DateTime @db.Date // só a data, sem hora
+  local     String   @db.VarChar(200)
+  descricao String   @db.Text
+  criadoEm  DateTime @default(now())
+
+  @@map("eventos")
+}
+
+// Tabela "ecopontos": página Descarte
+model Ecoponto {
+  id        Int      @id @default(autoincrement())
+  nome      String   @db.VarChar(150)
+  endereco  String   @db.VarChar(255)
+  horario   String   @db.VarChar(120)
+  descartes String   @db.Text
+  // Posição no mapa (opcional). Copie do Google Maps: botão direito no local > primeira linha.
+  // Double guarda os decimais com precisão suficiente (Float comum perde precisão).
+  latitude  Float?   @db.Double
+  longitude Float?   @db.Double
+  criadoEm  DateTime @default(now())
+
+  @@map("ecopontos")
+}
+
+// Tabela "noticias": página Notícias
+model Noticia {
+  id          Int      @id @default(autoincrement())
+  categoria   String   @db.VarChar(60)
+  titulo      String   @db.VarChar(200)
+  texto       String   @db.Text
+  foto        String?  @db.VarChar(255) // o "?" significa que é opcional
+  link        String?  @db.VarChar(500) // endereço da matéria completa (botão "Ler matéria")
+  publicadoEm DateTime @default(now())
+
+  @@map("noticias")
+}
+
+// Tabela "perguntas": perguntas frequentes da página Como Ajudar
+model Pergunta {
+  id       Int    @id @default(autoincrement())
+  pergunta String @db.VarChar(500)
+  resposta String @db.Text
+  ordem    Int    @default(0) // define a posição na lista
+
+  @@map("perguntas")
+}

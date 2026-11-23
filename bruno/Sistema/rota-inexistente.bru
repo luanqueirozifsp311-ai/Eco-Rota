@@ -1,0 +1,16 @@
+meta {
+  name: Rota inexistente (404)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/nao-existe
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 404
+  res.body.erro.codigo: eq ROTA_NAO_ENCONTRADA
+}

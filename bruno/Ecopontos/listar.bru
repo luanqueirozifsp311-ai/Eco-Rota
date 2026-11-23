@@ -1,0 +1,15 @@
+meta {
+  name: Listar ecopontos
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/ecopontos
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

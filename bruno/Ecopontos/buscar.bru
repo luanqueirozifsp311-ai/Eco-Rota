@@ -1,0 +1,15 @@
+meta {
+  name: Buscar ecoponto por id
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/ecopontos/{{ecopontoId}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

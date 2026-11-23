@@ -1,0 +1,19 @@
+meta {
+  name: Excluir ecoponto
+  type: http
+  seq: 10
+}
+
+delete {
+  url: {{baseUrl}}/ecopontos/{{ecopontoId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+assert {
+  res.status: eq 204
+}

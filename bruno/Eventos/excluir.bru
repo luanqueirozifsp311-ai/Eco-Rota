@@ -1,0 +1,19 @@
+meta {
+  name: Excluir evento
+  type: http
+  seq: 10
+}
+
+delete {
+  url: {{baseUrl}}/eventos/{{eventoId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+assert {
+  res.status: eq 204
+}

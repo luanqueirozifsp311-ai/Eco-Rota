@@ -1,0 +1,33 @@
+meta {
+  name: Criar pergunta
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/perguntas
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "pergunta": "Posso descartar óleo de cozinha nos ecopontos?",
+    "resposta": "Sim, em garrafa PET fechada, no Ecoponto Tinga.",
+    "ordem": 4
+  }
+}
+
+assert {
+  res.status: eq 201
+}
+
+script:post-response {
+  if (res.status === 201) {
+    bru.setVar("perguntaId", res.body.id);
+  }
+}
